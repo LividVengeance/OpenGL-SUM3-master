@@ -35,10 +35,15 @@ void CPlayScene::Render()
 {
 	glUseProgram(program);
 
+	// Enables and declares scissor rectangle
+	glEnable(GL_SCISSOR_TEST);
+	glScissor(0, 50, 1200, 500);
+
 	gameActor->Render();
 	gameSkybox->Render();
 
 	glBindVertexArray(0);		// Unbinding VAO
+	glDisable(GL_SCISSOR_TEST);	// Disables scissor rectangle
 	glUseProgram(0);
 }
 
